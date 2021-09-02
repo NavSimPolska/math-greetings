@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpResponse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('maths/', lambda request: HttpResponse("Tu będzie matma")),
+    path('maths/dod/<int:a>/<b>', lambda request, a, b: HttpResponse(a+int(b))),
+    path('maths/odj/<int:a>/<b>', lambda request, a, b: HttpResponse(a - int(b))),
+    path('maths/mno/<int:a>/<b>', lambda request, a, b: HttpResponse(a * int(b))),
+    path('maths/dzi/<int:a>/<b>', lambda request, a, b: HttpResponse(a / int(b))),
 ]
