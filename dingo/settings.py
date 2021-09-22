@@ -11,9 +11,21 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+def div(request, a, b):
+   if int(b) == 0:
+       wynik = "Error"
+       messages.add_message(request, messages.ERROR, "Dzielenie przez zero!")
+   else:
+       wynik = a / int(b)
+   c = {"a": a, "b": b, "operacja": "/", "wynik": wynik, "title": "dzielenie"}
+   return render(
+       request=request,
+       template_name="maths/operation.html",
+       context=c)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'maths',
+    'greetings',
 ]
 
 MIDDLEWARE = [
